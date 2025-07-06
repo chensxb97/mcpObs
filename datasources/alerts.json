@@ -1,0 +1,40 @@
+{
+    "alerts": [
+        {
+            "alert_id": "alert_001",
+            "application": "payments",
+            "severity": "critical",
+            "timestamp": "2025-07-06T10:07:15Z",
+            "message": "Database connection refused",
+            "action_required": true,
+            "acknowledged": false
+        },
+        {
+            "alert_id": "alert_002",
+            "application": "gateway",
+            "severity": "warning",
+            "timestamp": "2025-07-06T10:02:45Z",
+            "message": "High disk usage nearing capacity",
+            "action_required": false,
+            "acknowledged": true
+        },
+        {
+            "alert_id": "alert_003",
+            "application": "payments",
+            "severity": "critical",
+            "timestamp": "2025-07-06T10:12:15Z",
+            "message": "Payments service degraded, investigate immediately",
+            "action_required": true,
+            "acknowledged": false
+        },
+        {
+            "alert_id": "alert_004",
+            "application": "gateway",
+            "severity": "warning",
+            "timestamp": "2025-07-06T10:09:00Z",
+            "message": "Temporary failure in authentication service",
+            "action_required": false,
+            "acknowledged": true
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+2025-07-06 10:00:00 INFO Starting payments service
+2025-07-06 10:01:10 ERROR Failed to connect to database
+2025-07-06 10:02:25 ERROR Retry failed - database timeout
+2025-07-06 10:03:40 INFO Circuit breaker engaged to prevent overload
+2025-07-06 10:04:55 ERROR Unable to recover from DB failure
+2025-07-06 10:06:00 INFO Attempting reconnect to DB
+2025-07-06 10:07:15 ERROR Database connection refused
+2025-07-06 10:08:30 ERROR DB reconnection attempt #3 failed
+2025-07-06 10:09:45 WARNING High latency detected in payment processing
+2025-07-06 10:11:00 INFO Circuit breaker still active
+2025-07-06 10:12:15 ERROR Payments service degraded - limited functionality
+2025-07-06 10:13:30 INFO Alert sent to on-call engineer

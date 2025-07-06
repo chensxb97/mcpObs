@@ -1,0 +1,280 @@
+{
+    "metrics": [
+        {
+            "timestamp": "2025-07-06T10:00:00Z",
+            "payments": {
+                "error_count": 0,
+                "warning_count": 0,
+                "latency_ms": 120,
+                "throughput_rps": 150
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 0,
+                "disk_usage_percent": 70,
+                "latency_ms": 100,
+                "throughput_rps": 300
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 0,
+                "sms_sent": 0,
+                "webhook_processed": 0
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:01:10Z",
+            "payments": {
+                "error_count": 1,
+                "warning_count": 0,
+                "latency_ms": 250,
+                "throughput_rps": 100
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 0,
+                "disk_usage_percent": 72,
+                "latency_ms": 105,
+                "throughput_rps": 310
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 20,
+                "sms_sent": 50,
+                "webhook_processed": 10
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:02:20Z",
+            "payments": {
+                "error_count": 1,
+                "warning_count": 0,
+                "latency_ms": 300,
+                "throughput_rps": 80
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 1,
+                "disk_usage_percent": 85,
+                "latency_ms": 120,
+                "throughput_rps": 280
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 150,
+                "sms_sent": 100,
+                "webhook_processed": 25
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:03:30Z",
+            "payments": {
+                "error_count": 1,
+                "warning_count": 0,
+                "latency_ms": 350,
+                "throughput_rps": 70
+            },
+            "gateway": {
+                "error_count": 1,
+                "warning_count": 0,
+                "disk_usage_percent": 85,
+                "latency_ms": 150,
+                "throughput_rps": 270
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 0,
+                "sms_sent": 200,
+                "webhook_processed": 50
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:04:40Z",
+            "payments": {
+                "error_count": 1,
+                "warning_count": 0,
+                "latency_ms": 400,
+                "throughput_rps": 60
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 1,
+                "disk_usage_percent": 87,
+                "latency_ms": 140,
+                "throughput_rps": 260
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 0,
+                "sms_sent": 150,
+                "webhook_processed": 80
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:05:50Z",
+            "payments": {
+                "error_count": 0,
+                "warning_count": 0,
+                "latency_ms": 380,
+                "throughput_rps": 65
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 1,
+                "disk_usage_percent": 87,
+                "latency_ms": 130,
+                "throughput_rps": 265
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 30,
+                "sms_sent": 250,
+                "webhook_processed": 90
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:07:00Z",
+            "payments": {
+                "error_count": 2,
+                "warning_count": 1,
+                "latency_ms": 500,
+                "throughput_rps": 50
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 2,
+                "disk_usage_percent": 88,
+                "latency_ms": 140,
+                "throughput_rps": 250
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 50,
+                "sms_sent": 300,
+                "webhook_processed": 110
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:08:10Z",
+            "payments": {
+                "error_count": 2,
+                "warning_count": 1,
+                "latency_ms": 520,
+                "throughput_rps": 45
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 1,
+                "disk_usage_percent": 87,
+                "latency_ms": 135,
+                "throughput_rps": 255
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 60,
+                "sms_sent": 280,
+                "webhook_processed": 120
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:09:20Z",
+            "payments": {
+                "error_count": 3,
+                "warning_count": 1,
+                "latency_ms": 600,
+                "throughput_rps": 40
+            },
+            "gateway": {
+                "error_count": 1,
+                "warning_count": 1,
+                "disk_usage_percent": 87,
+                "latency_ms": 145,
+                "throughput_rps": 245
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 70,
+                "sms_sent": 260,
+                "webhook_processed": 130
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:10:30Z",
+            "payments": {
+                "error_count": 3,
+                "warning_count": 1,
+                "latency_ms": 610,
+                "throughput_rps": 38
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 1,
+                "disk_usage_percent": 87,
+                "latency_ms": 140,
+                "throughput_rps": 250
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 80,
+                "sms_sent": 270,
+                "webhook_processed": 140
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:11:40Z",
+            "payments": {
+                "error_count": 4,
+                "warning_count": 2,
+                "latency_ms": 650,
+                "throughput_rps": 35
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 1,
+                "disk_usage_percent": 86,
+                "latency_ms": 130,
+                "throughput_rps": 255
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 90,
+                "sms_sent": 280,
+                "webhook_processed": 150
+            }
+        },
+        {
+            "timestamp": "2025-07-06T10:12:50Z",
+            "payments": {
+                "error_count": 4,
+                "warning_count": 2,
+                "latency_ms": 700,
+                "throughput_rps": 30
+            },
+            "gateway": {
+                "error_count": 0,
+                "warning_count": 0,
+                "disk_usage_percent": 85,
+                "latency_ms": 120,
+                "throughput_rps": 260
+            },
+            "notifications": {
+                "error_count": 0,
+                "warning_count": 0,
+                "email_sent": 100,
+                "sms_sent": 290,
+                "webhook_processed": 160
+            }
+        }
+    ]
+}

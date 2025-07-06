@@ -1,0 +1,52 @@
+{
+    "incidents": [
+        {
+            "alert_key": "payments-db-conn-issue",
+            "application": "payments",
+            "description": "Database connectivity issues causing degraded service",
+            "alerts": [
+                {
+                    "alert_id": "alert_001",
+                    "severity": "critical",
+                    "timestamp": "2025-07-06T10:07:15Z",
+                    "message": "Database connection refused",
+                    "action_required": true,
+                    "acknowledged": false
+                },
+                {
+                    "alert_id": "alert_003",
+                    "severity": "critical",
+                    "timestamp": "2025-07-06T10:12:15Z",
+                    "message": "Payments service degraded, investigate immediately",
+                    "action_required": true,
+                    "acknowledged": false
+                }
+            ],
+            "summary": "Multiple critical alerts related to database connectivity impacting Payments."
+        },
+        {
+            "alert_key": "gateway-resource-warnings",
+            "application": "gateway",
+            "description": "Warnings about disk usage and authentication failures",
+            "alerts": [
+                {
+                    "alert_id": "alert_002",
+                    "severity": "warning",
+                    "timestamp": "2025-07-06T10:02:45Z",
+                    "message": "High disk usage nearing capacity",
+                    "action_required": false,
+                    "acknowledged": true
+                },
+                {
+                    "alert_id": "alert_004",
+                    "severity": "warning",
+                    "timestamp": "2025-07-06T10:09:00Z",
+                    "message": "Temporary failure in authentication service",
+                    "action_required": false,
+                    "acknowledged": true
+                }
+            ],
+            "summary": "Grouped warnings on resource utilization and auth service issues on Gateway."
+        }
+    ]
+}

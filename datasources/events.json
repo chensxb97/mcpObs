@@ -1,0 +1,58 @@
+{
+    "events": [
+        {
+            "timestamp": "2025-07-06T10:01:10Z",
+            "application": "payments",
+            "type": "ERROR",
+            "message": "Failed to connect to database"
+        },
+        {
+            "timestamp": "2025-07-06T10:02:45Z",
+            "application": "gateway",
+            "type": "ERROR",
+            "message": "Failed to forward request to backend"
+        },
+        {
+            "timestamp": "2025-07-06T10:03:30Z",
+            "application": "notifications",
+            "type": "INFO",
+            "message": "Webhooks processed with 0 failures"
+        },
+        {
+            "timestamp": "2025-07-06T10:04:55Z",
+            "application": "payments",
+            "type": "ERROR",
+            "message": "Unable to recover from DB failure"
+        },
+        {
+            "timestamp": "2025-07-06T10:07:30Z",
+            "application": "gateway",
+            "type": "WARNING",
+            "message": "Disk usage at 87%"
+        },
+        {
+            "timestamp": "2025-07-06T10:09:45Z",
+            "application": "payments",
+            "type": "WARNING",
+            "message": "High latency detected in payment processing"
+        },
+        {
+            "timestamp": "2025-07-06T10:10:00Z",
+            "application": "gateway",
+            "type": "ERROR",
+            "message": "Temporary failure in auth service"
+        },
+        {
+            "timestamp": "2025-07-06T10:12:15Z",
+            "application": "payments",
+            "type": "ERROR",
+            "message": "Payments service degraded - limited functionality"
+        },
+        {
+            "timestamp": "2025-07-06T10:13:30Z",
+            "application": "payments",
+            "type": "INFO",
+            "message": "Alert sent to on-call engineer"
+        }
+    ]
+}
