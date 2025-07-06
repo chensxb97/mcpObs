@@ -60,6 +60,8 @@ class ObservabilityOutput(BaseModel):
     metrics: List[Metric]
     events: List[Event]
 
+run_ctx = None
+
 async def main() -> None:
     api_key = os.environ.get("MISTRAL_API_KEY")
     if not api_key:
@@ -76,7 +78,7 @@ async def main() -> None:
         env=None,
     )
     mcp_client = MCPClientSTDIO(stdio_params=server_params)
-    await print_with_spinner("Initializing MCP Client ...")
+    await print_with_spinner("Initialized MCP Client ...")
 
     # Agent setup
     observability_agent = client.beta.agents.create(
@@ -86,7 +88,7 @@ async def main() -> None:
         description="",
     )
 
-    print("✅ Observability Agent ready.\n")
+    await print_with_spinner("✅ Observability Agent ready.\n")
 
     while True:
         try:
@@ -140,39 +142,46 @@ async def run_with_spinner(coro, msg="Loading..."):
     return result
 
 async def process_input(client: Mistral, observability_agent, mcp_client, query: str):
-    # Create a run context for the agent
-    async with RunContext(
-        agent_id=observability_agent.id,
-        output_format=ObservabilityOutput,
-        continue_on_fn_error=True,
-    ) as run_ctx:
-        # Register the MCP client with the run context
-        await run_ctx.register_mcp_client(mcp_client=mcp_client)
-        await print_with_spinner("MCP Client registered.")
-        await print_with_spinner(f"Submitted query to LLM: {query} ...")
-        run_result = await run_with_spinner(
-            client.beta.conversations.run_async(run_ctx=run_ctx, inputs=query),
-            msg=f"Processing query ...",
-        )
-        # Print the results
-        # print("\n=== Run Result ===")
-        # for entry in run_result.output_entries:
-        #     # Only print assistant message outputs
-        #     if entry.type == "message.output" and getattr(entry, "role", None) == "assistant":
-        #         try:
-        #             content_json = json.loads(entry.content)
-        #             # Pretty-print JSON content
-        #             pretty_content = json.dumps(content_json, indent=2)
-        #             print("Assistant:")
-        #             print(pretty_content)
-        #             print()
-        #         except (json.JSONDecodeError, TypeError):
-        #             print("Assistant:")
-        #             print(entry.content)
+    global run_ctx
 
-        summary = await summarize_observability(client, run_result.output_entries, MODEL)
-        print("\n=== LLM Summary ===")
-        print(summary)
+    # We will use the previous run context if it exists
+    if run_ctx is None:
+        # Create a new run context
+        await print_with_spinner("Creating new run context...")
+        run_ctx = RunContext(
+            agent_id=observability_agent.id,
+            output_format=ObservabilityOutput,
+            continue_on_fn_error=True,
+        )
+    else:
+        await print_with_spinner("Using existing run context ...")
+        
+    # Register the MCP client with the run context
+    await run_ctx.register_mcp_client(mcp_client=mcp_client)
+    await print_with_spinner("MCP Client registered.")
+    await print_with_spinner(f"Submitted query to LLM: {query} ...")
+    run_result = await run_with_spinner(
+        client.beta.conversations.run_async(run_ctx=run_ctx, inputs=query),
+        msg=f"Processing query ...",
+    )
+    # Print the results
+    # print("\n=== Run Result ===")
+    # for entry in run_result.output_entries:
+    #     # Only print assistant message outputs
+    #     if entry.type == "message.output" and getattr(entry, "role", None) == "assistant":
+    #         try:
+    #             content_json = json.loads(entry.content)
+    #             # Pretty-print JSON content
+    #             pretty_content = json.dumps(content_json, indent=2)
+    #             print("Assistant:")
+    #             print(pretty_content)
+    #             print()
+    #         except (json.JSONDecodeError, TypeError):
+    #             print("Assistant:")
+    #             print(entry.content)
+    summary = await summarize_observability(client, run_result.output_entries, MODEL)
+    print("\n=== LLM Summary ===")
+    print(summary)
                     
 async def summarize_observability(client: Mistral, data_json, model: str = MODEL):
     # Format the prompt with the raw JSON data embedded
