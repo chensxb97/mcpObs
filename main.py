@@ -75,6 +75,8 @@ async def main() -> None:
         args=[str((cwd / "server.py").resolve())],
         env=None,
     )
+    mcp_client = MCPClientSTDIO(stdio_params=server_params)
+    await print_with_spinner("Initializing MCP Client ...")
 
     # Agent setup
     observability_agent = client.beta.agents.create(
@@ -93,7 +95,7 @@ async def main() -> None:
                 print("👋 Exiting.")
                 break
             await print_with_spinner("Processing query...")
-            await process_input(client, observability_agent, server_params, query=cmd)
+            await process_input(client, observability_agent, mcp_client, query=cmd)
             
         except KeyboardInterrupt:
             print("\n👋 Exiting.")
@@ -137,18 +139,16 @@ async def run_with_spinner(coro, msg="Loading..."):
             pass
     return result
 
-async def process_input(client: Mistral, observability_agent, server_params: StdioServerParameters, query: str):
+async def process_input(client: Mistral, observability_agent, mcp_client, query: str):
     # Create a run context for the agent
     async with RunContext(
         agent_id=observability_agent.id,
         output_format=ObservabilityOutput,
         continue_on_fn_error=True,
     ) as run_ctx:
-        await print_with_spinner("Initializing MCP Client ...")
-        # Create and register an MCP client with the run context
-        mcp_client = MCPClientSTDIO(stdio_params=server_params)
+        # Register the MCP client with the run context
         await run_ctx.register_mcp_client(mcp_client=mcp_client)
-        await print_with_spinner("MCP Client initialized and registered.")
+        await print_with_spinner("MCP Client registered.")
         await print_with_spinner(f"Submitted query to LLM: {query} ...")
         run_result = await run_with_spinner(
             client.beta.conversations.run_async(run_ctx=run_ctx, inputs=query),
