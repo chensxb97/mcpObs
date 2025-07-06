@@ -1,23 +1,63 @@
 ## MCP Observability
-A POC that explores the Model Context Provider (MCP) architecture to combine and correlate different sources of observability data (logs, metrics, alerts and incidents) for intelligent alerting and automated root cause analysis (RCA) in observability systems.
+A project that explores the Model Context Provider (MCP) architecture for integrating different sources of observability data (alerts, incidents, events, logs and metrics) to power AI Agents for observability.
 
-For this POC, we will refer to this [docs](https://docs.mistral.ai/agents/mcp/) to setup the server and client to integrate with the Mistral API.
+### Objective
+The goal for this repo is to implement a simple POC that integrates a few observability datasources with a Mistral LLM to achieve the following functions:
 
-### Server
-For the server implementation, we will be defining the following methods:
-1. Ingest data from multiple datasources and enrich them with system context.
-2. Store the enriched data as unified MCP documents for downstream consumption by clients.
+- Summarize alerts and incidents.
+- Perform RCA by correlating incidents, alerts, metrics, and logs.
+- Recommend actionable solutions for each incident/alert.
 
-The server will expose an API endpoint to serve unified, structured data to the client. This data is transformed into MCP documents containing relevant context.
+### What you need
+- [Python3](https://www.python.org/downloads/)
+- [Mistral AI](https://mistral.ai/)
 
-### Client
-For the client implementation, we will implement the following functions:
+You will need a Mistral API key — the free-tier is sufficient for this POC. No billing info is required unless used in production.
 
-1. Fetch data from the MCP API
-    - Query incident contexts by service, time, or alert type.
-    - Query relationship mappings to understand how alerts, metrics, and logs are inter-connected.
+This project follows the instructions outlined in Mistral's documentation for the MCP setup.
 
-2. Send the data to the LLM for analysis
-    - Summarize alerts and incidents.
-    - Perform RCA by correlating incidents, alerts, metrics, and logs.
-    - Recommend actionable solutions for each incident/alert.
+- [Model Context Protocol](https://modelcontextprotocol.io/introduction)
+- [Mistral MCP docs](https://docs.mistral.ai/agents/mcp/)
+
+### Components
+- server.py — MCP Server (mock interface to observability data)
+
+- main.py — MCP Client + AI Agent + Terminal UI
+
+- /datasources/ — Mock Observability Data (alerts, incidents, metrics, logs)
+
+### Usage
+1. Clone Repo
+```
+git clone https://github.com/chensxb97/mcpObs.git
+cd mcpObs
+```
+
+2. Setup python virtual environment.
+```
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+
+3. Setup .env with your MISTRAL_API_KEY. This file is currently ignored in the `.gitignore` file, do not ever commit this file.
+
+```
+touch .env
+```
+
+Add this line:
+```
+MISTRAL_API_KEY=<YOUR_API_KEY>
+```
+
+3. Run the main script. This will setup the LLM, MCP server and AI agent. 
+
+You will be prompted to enter a command (e.g. “summarize recent alerts” or “what caused the latest incident?”). The agent will:
+- Use the MCP server tools to retrieve relevant observability data
+- Pass the data to a summarizer LLM
+- Return a concise diagnosis or recommendation
+
+```
+python3 main.py
+```
