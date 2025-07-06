@@ -9,10 +9,11 @@ mcp = FastMCP(name="mcp_observability_server")
 
 # Datasource paths
 DATASOURCE_PATH = "datasources/"
+LOGS_FOLDER = DATASOURCE_PATH + "logs/"
 LOGS = [
     DATASOURCE_PATH + "logs/gateway.log",
     DATASOURCE_PATH + "logs/notifications.log",
-    DATASOURCE_PATH + "logs/payment.log",
+    DATASOURCE_PATH + "logs/payments.log",
 ]
 ALERTS = DATASOURCE_PATH + "alerts.json"
 INCIDENTS = DATASOURCE_PATH + "incidents.json"
@@ -31,7 +32,7 @@ def get_info_logs(appName: AppName | None = None):
     res = []
     if appName:
         appName = appName.value.lower()
-        with open(file=f"{appName}.log", mode="r") as log_file:
+        with open(file=f"{LOGS_FOLDER + appName}.log", mode="r") as log_file:
             lines = log_file.readlines()
             
             for line in lines:
