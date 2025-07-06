@@ -1,52 +1,127 @@
-{
-    "incidents": [
-        {
-            "alert_key": "payments-db-conn-issue",
-            "application": "payments",
-            "description": "Database connectivity issues causing degraded service",
-            "alerts": [
-                {
-                    "alert_id": "alert_001",
-                    "severity": "critical",
-                    "timestamp": "2025-07-06T10:07:15Z",
-                    "message": "Database connection refused",
-                    "action_required": true,
-                    "acknowledged": false
-                },
-                {
-                    "alert_id": "alert_003",
-                    "severity": "critical",
-                    "timestamp": "2025-07-06T10:12:15Z",
-                    "message": "Payments service degraded, investigate immediately",
-                    "action_required": true,
-                    "acknowledged": false
-                }
-            ],
-            "summary": "Multiple critical alerts related to database connectivity impacting Payments."
-        },
-        {
-            "alert_key": "gateway-resource-warnings",
-            "application": "gateway",
-            "description": "Warnings about disk usage and authentication failures",
-            "alerts": [
-                {
-                    "alert_id": "alert_002",
-                    "severity": "warning",
-                    "timestamp": "2025-07-06T10:02:45Z",
-                    "message": "High disk usage nearing capacity",
-                    "action_required": false,
-                    "acknowledged": true
-                },
-                {
-                    "alert_id": "alert_004",
-                    "severity": "warning",
-                    "timestamp": "2025-07-06T10:09:00Z",
-                    "message": "Temporary failure in authentication service",
-                    "action_required": false,
-                    "acknowledged": true
-                }
-            ],
-            "summary": "Grouped warnings on resource utilization and auth service issues on Gateway."
-        }
-    ]
-}
+[
+    {
+        "alert_key": "payments-db-conn-issue",
+        "application": "payments",
+        "description": "Database connectivity issues causing degraded service",
+        "alerts": [
+            {
+                "alert_id": "alert_001",
+                "severity": "critical",
+                "timestamp": "2025-07-06T10:07:15Z",
+                "message": "Database connection refused",
+                "action_required": true,
+                "acknowledged": false
+            },
+            {
+                "alert_id": "alert_003",
+                "severity": "critical",
+                "timestamp": "2025-07-06T10:12:15Z",
+                "message": "Payments service degraded, investigate immediately",
+                "action_required": true,
+                "acknowledged": false
+            }
+        ],
+        "summary": "Multiple critical alerts related to database connectivity impacting Payments.",
+        "resolved": false
+    },
+    {
+        "alert_key": "gateway-resource-warnings",
+        "application": "gateway",
+        "description": "Warnings about disk usage and authentication failures",
+        "alerts": [
+            {
+                "alert_id": "alert_002",
+                "severity": "warning",
+                "timestamp": "2025-07-06T10:02:45Z",
+                "message": "High disk usage nearing capacity",
+                "action_required": false,
+                "acknowledged": true
+            },
+            {
+                "alert_id": "alert_004",
+                "severity": "warning",
+                "timestamp": "2025-07-06T10:09:00Z",
+                "message": "Temporary failure in authentication service",
+                "action_required": false,
+                "acknowledged": true
+            }
+        ],
+        "summary": "Grouped warnings on resource utilization and auth service issues on Gateway.",
+        "resolved": false
+    },
+    {
+        "alert_key": "notifications-queue-lag",
+        "application": "notifications",
+        "description": "Lag observed in processing the message queue.",
+        "alerts": [
+            {
+                "alert_id": "alert_005",
+                "severity": "warning",
+                "timestamp": "2025-07-05T15:12:30Z",
+                "message": "Message processing delay above threshold",
+                "action_required": false,
+                "acknowledged": true
+            },
+            {
+                "alert_id": "alert_006",
+                "severity": "info",
+                "timestamp": "2025-07-05T15:45:00Z",
+                "message": "Lag decreased and back to normal",
+                "action_required": false,
+                "acknowledged": true
+            }
+        ],
+        "summary": "Temporary lag in the notifications queue resolved without intervention.",
+        "resolved": true
+    },
+    {
+        "alert_key": "payments-timeout-errors",
+        "application": "payments",
+        "description": "Spike in timeout errors for the payments API.",
+        "alerts": [
+            {
+                "alert_id": "alert_007",
+                "severity": "critical",
+                "timestamp": "2025-07-04T08:30:12Z",
+                "message": "Timeouts exceeding threshold for /process endpoint",
+                "action_required": true,
+                "acknowledged": true
+            },
+            {
+                "alert_id": "alert_008",
+                "severity": "info",
+                "timestamp": "2025-07-04T09:10:45Z",
+                "message": "Timeouts stabilized, no further spikes observed",
+                "action_required": false,
+                "acknowledged": true
+            }
+        ],
+        "summary": "Previous timeout issues with Payments API were acknowledged and mitigated.",
+        "resolved": true
+    },
+    {
+        "alert_key": "gateway-cpu-spike",
+        "application": "gateway",
+        "description": "CPU usage spike detected across gateway instances.",
+        "alerts": [
+            {
+                "alert_id": "alert_009",
+                "severity": "warning",
+                "timestamp": "2025-07-03T17:22:01Z",
+                "message": "CPU usage above 85% for 5+ minutes",
+                "action_required": true,
+                "acknowledged": true
+            },
+            {
+                "alert_id": "alert_010",
+                "severity": "info",
+                "timestamp": "2025-07-03T18:05:30Z",
+                "message": "CPU usage normalized after autoscaling",
+                "action_required": false,
+                "acknowledged": true
+            }
+        ],
+        "summary": "CPU spike issue on Gateway auto-resolved with scaling. No action needed.",
+        "resolved": true
+    }
+]

@@ -1,40 +1,92 @@
-{
-    "alerts": [
-        {
-            "alert_id": "alert_001",
-            "application": "payments",
-            "severity": "critical",
-            "timestamp": "2025-07-06T10:07:15Z",
-            "message": "Database connection refused",
-            "action_required": true,
-            "acknowledged": false
-        },
-        {
-            "alert_id": "alert_002",
-            "application": "gateway",
-            "severity": "warning",
-            "timestamp": "2025-07-06T10:02:45Z",
-            "message": "High disk usage nearing capacity",
-            "action_required": false,
-            "acknowledged": true
-        },
-        {
-            "alert_id": "alert_003",
-            "application": "payments",
-            "severity": "critical",
-            "timestamp": "2025-07-06T10:12:15Z",
-            "message": "Payments service degraded, investigate immediately",
-            "action_required": true,
-            "acknowledged": false
-        },
-        {
-            "alert_id": "alert_004",
-            "application": "gateway",
-            "severity": "warning",
-            "timestamp": "2025-07-06T10:09:00Z",
-            "message": "Temporary failure in authentication service",
-            "action_required": false,
-            "acknowledged": true
-        }
-    ]
-}
+[
+    {
+        "alert_id": "alert_001",
+        "application": "payments",
+        "severity": "critical",
+        "timestamp": "2025-07-06T10:07:15Z",
+        "message": "Database connection refused",
+        "action_required": true,
+        "acknowledged": false
+    },
+    {
+        "alert_id": "alert_002",
+        "application": "gateway",
+        "severity": "warning",
+        "timestamp": "2025-07-06T10:02:45Z",
+        "message": "High disk usage nearing capacity",
+        "action_required": false,
+        "acknowledged": true
+    },
+    {
+        "alert_id": "alert_003",
+        "application": "payments",
+        "severity": "critical",
+        "timestamp": "2025-07-06T10:12:15Z",
+        "message": "Payments service degraded, investigate immediately",
+        "action_required": true,
+        "acknowledged": false
+    },
+    {
+        "alert_id": "alert_004",
+        "application": "gateway",
+        "severity": "warning",
+        "timestamp": "2025-07-06T10:09:00Z",
+        "message": "Temporary failure in authentication service",
+        "action_required": false,
+        "acknowledged": true
+    },
+    {
+        "alert_id": "alert_005",
+        "application": "notifications",
+        "severity": "warning",
+        "timestamp": "2025-07-05T15:12:30Z",
+        "message": "Message processing delay above threshold",
+        "action_required": false,
+        "acknowledged": true
+    },
+    {
+        "alert_id": "alert_006",
+        "application": "notifications",
+        "severity": "info",
+        "timestamp": "2025-07-05T15:45:00Z",
+        "message": "Lag decreased and back to normal",
+        "action_required": false,
+        "acknowledged": true
+    },
+    {
+        "alert_id": "alert_007",
+        "application": "payments",
+        "severity": "critical",
+        "timestamp": "2025-07-04T08:30:12Z",
+        "message": "Timeouts exceeding threshold for /process endpoint",
+        "action_required": true,
+        "acknowledged": true
+    },
+    {
+        "alert_id": "alert_008",
+        "application": "payments",
+        "severity": "info",
+        "timestamp": "2025-07-04T09:10:45Z",
+        "message": "Timeouts stabilized, no further spikes observed",
+        "action_required": false,
+        "acknowledged": true
+    },
+    {
+        "alert_id": "alert_009",
+        "application": "gateway",
+        "severity": "warning",
+        "timestamp": "2025-07-03T17:22:01Z",
+        "message": "CPU usage above 85% for 5+ minutes",
+        "action_required": true,
+        "acknowledged": true
+    },
+    {
+        "alert_id": "alert_010",
+        "application": "gateway",
+        "severity": "info",
+        "timestamp": "2025-07-03T18:05:30Z",
+        "message": "CPU usage normalized after autoscaling",
+        "action_required": false,
+        "acknowledged": true
+    }
+]
