@@ -1,6 +1,6 @@
 [
     {
-        "alert_key": "payments-db-conn-issue",
+        "incidentName": "payments-db-conn-issue",
         "application": "payments",
         "description": "Database connectivity issues causing degraded service",
         "alerts": [
@@ -25,7 +25,7 @@
         "resolved": false
     },
     {
-        "alert_key": "gateway-resource-warnings",
+        "incidentName": "gateway-resource-warnings",
         "application": "gateway",
         "description": "Warnings about disk usage and authentication failures",
         "alerts": [
@@ -50,7 +50,7 @@
         "resolved": false
     },
     {
-        "alert_key": "notifications-queue-lag",
+        "incidentName": "notifications-queue-lag",
         "application": "notifications",
         "description": "Lag observed in processing the message queue.",
         "alerts": [
@@ -75,7 +75,7 @@
         "resolved": true
     },
     {
-        "alert_key": "payments-timeout-errors",
+        "incidentName": "payments-timeout-errors",
         "application": "payments",
         "description": "Spike in timeout errors for the payments API.",
         "alerts": [
@@ -100,7 +100,7 @@
         "resolved": true
     },
     {
-        "alert_key": "gateway-cpu-spike",
+        "incidentName": "gateway-cpu-spike",
         "application": "gateway",
         "description": "CPU usage spike detected across gateway instances.",
         "alerts": [

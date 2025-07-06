@@ -2,187 +2,187 @@
     {
         "timestamp": "2025-07-06T10:00:00Z",
         "application": "gateway",
-        "event_type": "init_complete"
+        "name": "init_complete"
     },
     {
         "timestamp": "2025-07-06T10:01:30Z",
         "application": "gateway",
-        "event_type": "health_check_passed"
+        "name": "health_check_passed"
     },
     {
         "timestamp": "2025-07-06T10:02:45Z",
         "application": "gateway",
-        "event_type": "disk_usage_warning",
+        "name": "disk_usage_warning",
         "details": "85% usage"
     },
     {
         "timestamp": "2025-07-06T10:03:50Z",
         "application": "gateway",
-        "event_type": "backend_forwarding_error"
+        "name": "backend_forwarding_error"
     },
     {
         "timestamp": "2025-07-06T10:05:00Z",
         "application": "gateway",
-        "event_type": "transient_error_recovered"
+        "name": "transient_error_recovered"
     },
     {
         "timestamp": "2025-07-06T10:06:15Z",
         "application": "gateway",
-        "event_type": "disk_usage_monitoring"
+        "name": "disk_usage_monitoring"
     },
     {
         "timestamp": "2025-07-06T10:07:30Z",
         "application": "gateway",
-        "event_type": "disk_usage_warning",
+        "name": "disk_usage_warning",
         "details": "87% usage"
     },
     {
         "timestamp": "2025-07-06T10:08:45Z",
         "application": "gateway",
-        "event_type": "latency_normal"
+        "name": "latency_normal"
     },
     {
         "timestamp": "2025-07-06T10:10:00Z",
         "application": "gateway",
-        "event_type": "auth_failure"
+        "name": "auth_failure"
     },
     {
         "timestamp": "2025-07-06T10:11:15Z",
         "application": "gateway",
-        "event_type": "auth_recovered"
+        "name": "auth_recovered"
     },
     {
         "timestamp": "2025-07-06T10:12:30Z",
         "application": "gateway",
-        "event_type": "network_jitter_detected"
+        "name": "network_jitter_detected"
     },
     {
         "timestamp": "2025-07-06T10:13:45Z",
         "application": "gateway",
-        "event_type": "operational_with_minor_warnings"
+        "name": "operational_with_minor_warnings"
     },
     {
         "timestamp": "2025-07-06T10:00:00Z",
         "application": "notifications",
-        "event_type": "service_online"
+        "name": "service_online"
     },
     {
         "timestamp": "2025-07-06T10:01:10Z",
         "application": "notifications",
-        "event_type": "sms_queued",
+        "name": "sms_queued",
         "count": 200
     },
     {
         "timestamp": "2025-07-06T10:02:20Z",
         "application": "notifications",
-        "event_type": "email_sent",
+        "name": "email_sent",
         "count": 150
     },
     {
         "timestamp": "2025-07-06T10:03:30Z",
         "application": "notifications",
-        "event_type": "webhook_processed",
+        "name": "webhook_processed",
         "count": 25
     },
     {
         "timestamp": "2025-07-06T10:04:40Z",
         "application": "notifications",
-        "event_type": "systems_healthy"
+        "name": "systems_healthy"
     },
     {
         "timestamp": "2025-07-06T10:05:50Z",
         "application": "notifications",
-        "event_type": "daily_report_scheduled"
+        "name": "daily_report_scheduled"
     },
     {
         "timestamp": "2025-07-06T10:07:00Z",
         "application": "notifications",
-        "event_type": "push_notification_sent",
+        "name": "push_notification_sent",
         "count": 300
     },
     {
         "timestamp": "2025-07-06T10:08:10Z",
         "application": "notifications",
-        "event_type": "email_queue_cleared"
+        "name": "email_queue_cleared"
     },
     {
         "timestamp": "2025-07-06T10:09:20Z",
         "application": "notifications",
-        "event_type": "sms_delivery_normal"
+        "name": "sms_delivery_normal"
     },
     {
         "timestamp": "2025-07-06T10:10:30Z",
         "application": "notifications",
-        "event_type": "webhook_response_stable"
+        "name": "webhook_response_stable"
     },
     {
         "timestamp": "2025-07-06T10:11:40Z",
         "application": "notifications",
-        "event_type": "health_check_passed"
+        "name": "health_check_passed"
     },
     {
         "timestamp": "2025-07-06T10:12:50Z",
         "application": "notifications",
-        "event_type": "maintenance_completed"
+        "name": "maintenance_completed"
     },
     {
         "timestamp": "2025-07-06T10:00:00Z",
         "application": "payments",
-        "event_type": "service_start"
+        "name": "service_start"
     },
     {
         "timestamp": "2025-07-06T10:01:10Z",
         "application": "payments",
-        "event_type": "db_connection_failure"
+        "name": "db_connection_failure"
     },
     {
         "timestamp": "2025-07-06T10:02:25Z",
         "application": "payments",
-        "event_type": "db_retry_timeout"
+        "name": "db_retry_timeout"
     },
     {
         "timestamp": "2025-07-06T10:03:40Z",
         "application": "payments",
-        "event_type": "circuit_breaker_engaged"
+        "name": "circuit_breaker_engaged"
     },
     {
         "timestamp": "2025-07-06T10:04:55Z",
         "application": "payments",
-        "event_type": "db_recovery_failed"
+        "name": "db_recovery_failed"
     },
     {
         "timestamp": "2025-07-06T10:06:00Z",
         "application": "payments",
-        "event_type": "db_reconnect_attempted"
+        "name": "db_reconnect_attempted"
     },
     {
         "timestamp": "2025-07-06T10:07:15Z",
         "application": "payments",
-        "event_type": "db_connection_refused"
+        "name": "db_connection_refused"
     },
     {
         "timestamp": "2025-07-06T10:08:30Z",
         "application": "payments",
-        "event_type": "db_reconnect_failed"
+        "name": "db_reconnect_failed"
     },
     {
         "timestamp": "2025-07-06T10:09:45Z",
         "application": "payments",
-        "event_type": "latency_warning"
+        "name": "latency_warning"
     },
     {
         "timestamp": "2025-07-06T10:11:00Z",
         "application": "payments",
-        "event_type": "circuit_breaker_active"
+        "name": "circuit_breaker_active"
     },
     {
         "timestamp": "2025-07-06T10:12:15Z",
         "application": "payments",
-        "event_type": "degraded_service_detected"
+        "name": "degraded_service_detected"
     },
     {
         "timestamp": "2025-07-06T10:13:30Z",
         "application": "payments",
-        "event_type": "engineer_alert_dispatched"
+        "name": "engineer_alert_dispatched"
     }
 ]
