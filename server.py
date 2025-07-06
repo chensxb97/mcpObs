@@ -135,8 +135,8 @@ def get_metrics(appName: AppName | None = None):
             res.append(metric)
         return res
 
-@mcp.tool(name="get_app_events", description="get events by application")
-def get_app_events(app_name: AppName):
+@mcp.tool(name="get_events", description="get events")
+def get_events(app_name: AppName):
     with open(file=EVENTS, mode="r") as event_file:
         events = json.load(event_file)
         res = []
