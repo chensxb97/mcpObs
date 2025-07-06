@@ -20,11 +20,11 @@ This project follows the instructions outlined in Mistral's documentation for th
 - [Mistral MCP docs](https://docs.mistral.ai/agents/mcp/)
 
 ### Components
-- server.py — MCP Server (mock interface to observability data)
+- `server.py` — MCP Server (mock interface to observability data)
 
-- main.py — MCP Client + AI Agent + Terminal UI
+- `main.py` — MCP Client + AI Agent + Terminal UI
 
-- /datasources/ — Mock Observability Data (alerts, incidents, metrics, logs)
+- `/datasources/` — Mock Observability Data (alerts, incidents, metrics, logs)
 
 ### Usage
 1. Clone Repo
@@ -40,13 +40,10 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-3. Setup .env with your MISTRAL_API_KEY. This file is currently ignored in the `.gitignore` file, do not ever commit this file.
-
+3. Setup .env with your MISTRAL_API_KEY. This file is currently ignored in `.gitignore`, do not ever commit this file.
 ```
 touch .env
 ```
-
-Add this line:
 ```
 MISTRAL_API_KEY=<YOUR_API_KEY>
 ```
@@ -61,3 +58,17 @@ You will be prompted to enter a command (e.g. “summarize recent alerts” or �
 ```
 python3 main.py
 ```
+
+### Screenshots
+
+1. Request critical alerts for an application
+
+![Critical Alerts](/screenshots/critical_alerts.png)
+
+2. Asking for recent error logs for an application
+
+![Error Logs](/screenshots/error_logs.png)
+
+3. Request for an investigation
+
+![Investigation](/screenshots/investigation.png)
