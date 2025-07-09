@@ -98,14 +98,15 @@ MISTRAL_API_KEY=<YOUR_API_KEY>
 
 2. Run `main.py`. This will instantiate an LLM agent with an MCP client that establishes a connection with the local MCP server - `server.py`.
 
+```
+python3 main.py
+```
+
 You will be prompted to enter a command (e.g. “summarize recent alerts” or “what caused the latest incident?”). The agent will:
 - With the knowledge of tools from the MCP server, it decides which tool is most relevant from the input prompt.
 - Call the tools to fetch relevant observability data.
 - After receiving the data, it is fed into a chat completions API to summarise the data as an observability expert.
 
-```
-python3 main.py
-```
 
 ### Screenshots
 #### Request critical alerts for an application
