@@ -4,11 +4,18 @@ from loguru import logger
 import json
 from enum import Enum
 from pathlib import Path
-# Initialize FastMCP server
+
+cwd = Path(__file__).parent.resolve()
+
 mcp = FastMCP(name="mcp_observability_server")
 
+# ENUMs
+class AppName(str, Enum):
+    GATEWAY = "gateway"
+    NOTIFICATIONS = "notifications"
+    PAYMENTS = "payments"
+
 # Datasource paths
-cwd = Path(__file__).parent.resolve()
 DATASOURCE_PATH = cwd / "datasources"
 LOGS_FOLDER = DATASOURCE_PATH / "logs"
 LOGS = {
@@ -21,14 +28,8 @@ INCIDENTS = DATASOURCE_PATH / "incidents.json"
 METRICS = DATASOURCE_PATH / "metrics.json"
 EVENTS = DATASOURCE_PATH / "events.json"
 
-# ENUMs
-class AppName(str, Enum):
-    PAYMENTS = "payments"
-    GATEWAY = "gateway"
-    NOTIFICATIONS = "notifications"
-
 # LOGS
-@mcp.tool(name="get_info_logs", description="get all info logs")
+@mcp.tool(name="get_info_logs", description="get info logs")
 def get_info_logs(appName: AppName | None = None):
     res = []
     if appName:
@@ -52,7 +53,7 @@ def get_info_logs(appName: AppName | None = None):
                     res.append(line)
     return res
 
-@mcp.tool(name="get_error_logs", description="get all error logs")
+@mcp.tool(name="get_error_logs", description="get error logs")
 def get_error_logs(appName: AppName | None = None):
     res = []
     if appName:
@@ -75,7 +76,7 @@ def get_error_logs(appName: AppName | None = None):
     return res
 
 # ALERTS
-@mcp.tool(name="get_warning_alerts", description="get all warning alerts")
+@mcp.tool(name="get_warning_alerts", description="get warning alerts")
 def get_warning_alerts(appName: AppName | None = None):
     res = []
     with open(file=ALERTS, mode="r") as alert_file:
@@ -88,7 +89,7 @@ def get_warning_alerts(appName: AppName | None = None):
                 res.append(alert)
     return res
 
-@mcp.tool(name="get_critical_alerts", description="get all critical alerts")
+@mcp.tool(name="get_critical_alerts", description="get critical alerts")
 def get_critical_alerts(appName: AppName | None = None):
     res = []
     with open(file=ALERTS, mode="r") as alert_file:
@@ -102,7 +103,7 @@ def get_critical_alerts(appName: AppName | None = None):
     return res
 
 # INCIDENTS
-@mcp.tool(name="get_unresolved_incidents", description="get all unresolved incidents")
+@mcp.tool(name="get_unresolved_incidents", description="get unresolved incidents")
 def get_unresolved_incidents(appName: AppName | None = None):
     with open(file=INCIDENTS, mode="r") as incident_file:
         incidents = json.load(incident_file)
@@ -114,7 +115,7 @@ def get_unresolved_incidents(appName: AppName | None = None):
                 unresolved.append(incident)
         return unresolved
     
-@mcp.tool(name="get_resolved_incidents", description="get all resolved incidents")
+@mcp.tool(name="get_resolved_incidents", description="get resolved incidents")
 def get_resolved_incidents(appName: AppName | None = None):
     with open(file=INCIDENTS, mode="r") as incident_file:
         incidents = json.load(incident_file)

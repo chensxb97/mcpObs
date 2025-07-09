@@ -14,7 +14,7 @@ from typing import List
 from pydantic import BaseModel
 
 load_dotenv()
-cwd = Path(__file__).parent
+
 MODEL = "mistral-small-latest"  # or your preferred model
 
 class Alert(BaseModel):
@@ -113,7 +113,7 @@ async def spinner(msg="Loading..."):
         try:
             await asyncio.sleep(0.1)
         except asyncio.CancelledError:
-            print("\r", end="", flush=True)  # clear line
+            print("\r", end="", flush=True)
             break
 
 async def print_with_spinner(text: str):
@@ -141,7 +141,6 @@ async def run_with_spinner(coro, msg="Loading..."):
 async def process_input(client: Mistral, observability_agent, mcp_client, query: str):
     global run_ctx
 
-    # We will use the previous run context if it exists
     if run_ctx is None:
         # Create a new run context
         await print_with_spinner("Creating new run context...")
@@ -151,6 +150,7 @@ async def process_input(client: Mistral, observability_agent, mcp_client, query:
             continue_on_fn_error=True,
         )
     else:
+        # Use the previous run context if it exists
         await print_with_spinner("Using existing run context...")
         
     # Register the MCP client with the run context
@@ -180,6 +180,7 @@ async def summarize_run_result(client: Mistral, data_json, model: str = MODEL):
     # """
     
     prompt = f"{data_json}"
+
     # Pass the prompt to the LLM for summarization
     await print_with_spinner(f"Passing data to LLM for summarization ...")
     response = client.chat.complete(
@@ -192,7 +193,6 @@ async def summarize_run_result(client: Mistral, data_json, model: str = MODEL):
         ]
     )
 
-    # Extract assistant's reply
     summary = response.choices[0].message.content
     return summary
 
