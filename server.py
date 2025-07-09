@@ -3,22 +3,23 @@ from mcp.server.fastmcp import FastMCP
 from loguru import logger
 import json
 from enum import Enum
-
+from pathlib import Path
 # Initialize FastMCP server
 mcp = FastMCP(name="mcp_observability_server")
 
 # Datasource paths
-DATASOURCE_PATH = "datasources/"
-LOGS_FOLDER = DATASOURCE_PATH + "logs/"
-LOGS = [
-    DATASOURCE_PATH + "logs/gateway.log",
-    DATASOURCE_PATH + "logs/notifications.log",
-    DATASOURCE_PATH + "logs/payments.log",
-]
-ALERTS = DATASOURCE_PATH + "alerts.json"
-INCIDENTS = DATASOURCE_PATH + "incidents.json"
-METRICS = DATASOURCE_PATH + "metrics.json"
-EVENTS = DATASOURCE_PATH + "events.json"
+cwd = Path(__file__).parent.resolve()
+DATASOURCE_PATH = cwd / "datasources"
+LOGS_FOLDER = DATASOURCE_PATH / "logs"
+LOGS = {
+    "gateway": DATASOURCE_PATH / "logs/gateway.log",
+    "notifications": DATASOURCE_PATH / "logs/notifications.log",
+    "payments": DATASOURCE_PATH / "logs/payments.log",
+}
+ALERTS = DATASOURCE_PATH / "alerts.json"
+INCIDENTS = DATASOURCE_PATH / "incidents.json"
+METRICS = DATASOURCE_PATH / "metrics.json"
+EVENTS = DATASOURCE_PATH / "events.json"
 
 # ENUMs
 class AppName(str, Enum):
@@ -32,7 +33,7 @@ def get_info_logs(appName: AppName | None = None):
     res = []
     if appName:
         appName = appName.value.lower()
-        with open(file=f"{LOGS_FOLDER + appName}.log", mode="r") as log_file:
+        with open(file=LOGS[appName], mode="r") as log_file:
             lines = log_file.readlines()
             
             for line in lines:
@@ -56,7 +57,7 @@ def get_error_logs(appName: AppName | None = None):
     res = []
     if appName:
         appName = appName.value.lower()
-        with open(file=f"{appName}.log", mode="r") as log_file:
+        with open(file=LOGS[appName], mode="r") as log_file:
             lines = log_file.readlines()
             
             for line in lines:
