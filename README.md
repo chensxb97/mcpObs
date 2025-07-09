@@ -71,6 +71,7 @@ cd mcpObs
 ![Final Result](/screenshots/final_result.png)
 
 ### Custom MCP Client Integration
+Alternatively, if you wish to build a custom MCP client + LLM that programmatically connects to the MCP server, an example implementation is provided in `main.py`.
 
 #### What you need
 - [Python3](https://www.python.org/downloads/)
