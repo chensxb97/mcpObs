@@ -1,30 +1,17 @@
 ## MCP Observability
-A project that explores the Model Context Provider (MCP) architecture for integrating different sources of observability data (alerts, incidents, events, logs and metrics) to power AI Agents for observability.
+A project that explores the [Model Context Protocol](https://modelcontextprotocol.io/introduction) architecture for integrating different sources of observability data (alerts, incidents, events, logs and metrics) to power LLMs for observability.
 
 ### Objective
-The goal for this repo is to implement a simple POC that integrates a few observability datasources with a Mistral LLM to achieve the following functions:
+The goal for this repo is to implement an end to end LLM workflow that is able to rationalise data from different observability datasources to achieve the following functions:
 
 - Summarize alerts and incidents.
 - Perform RCA by correlating incidents, alerts, metrics, and logs.
-- Recommend actionable solutions for each incident/alert.
+- Recommend actionable solutions post-investigation.
 
-### What you need
-- [Python3](https://www.python.org/downloads/)
-- [Mistral AI](https://mistral.ai/)
-
-You will need a Mistral API key — the free-tier is sufficient for this POC. No billing info is required unless used in production.
-
-This project follows the instructions outlined in Mistral's documentation for the MCP setup.
-
-- [Model Context Protocol](https://modelcontextprotocol.io/introduction)
-- [Mistral MCP docs](https://docs.mistral.ai/agents/mcp/)
-
-### Components
+### Components of this repo
 - `server.py` — MCP Server (mock interface to observability data)
-
-- `main.py` — MCP Client + AI Agent + Terminal UI
-
-- `/datasources/` — Mock Observability Data (alerts, incidents, metrics, logs)
+- `main.py` — Custom MCP Client + AI Agent + Terminal UI
+- `/datasources/` — Mock Observability Data (logs, alerts, incidents, metrics, events)
 
 ### Usage
 1. Clone Repo
@@ -33,14 +20,71 @@ git clone https://github.com/chensxb97/mcpObs.git
 cd mcpObs
 ```
 
-2. Setup python virtual environment.
+2. Connect the MCP server to a MCP Client (Github Copilot, Cline, Claude, Cursor) or run a custom MCP client + LLM programmatically.
+
+### Github Copilot Integration
+
+1. Open the **Ask Copilot** chat using `Command + Shift + I` and select `Agent` mode.
+
+![Agent Mode](/screenshots/agent_mode.png)
+
+2. Click on the **Tools** icon. Type and select `Add More Tools`. Select `Add MCP Server` afterwards.
+
+![Select Tools](/screenshots/select_tools.png)
+![Add MCP Server](/screenshots/add_mcp_server.png)
+
+3. Select `Command (stdio)`, which is the mode of transport defined in `server.py`.
+
+![Command (stdio)](/screenshots/command_stdio.png)
+
+4. Provide the **run command** for your mcp server. In this case, I define the **path of the python executable** in the virtual environment and the mcp server file - `server.py`.
+
+```py
+/<path to server file>/venv/bin/<python executable> server.py
+```
+
+5. On submitting the run command, a mcp-servers definition will be generated in Github Copilot's `settings.json`. You should see something similar to this.
+
+```json
+"mcp": {
+    "servers": {
+        "my-mcp-server-XXXXX": {
+            "type": "stdio",
+            "command": "<path to server file>/venv/bin/<python executable>",
+            "args": [
+                "<path to server file>/server.py"
+            ]
+        }
+    }
+}
+```
+
+6. You can now start prompting Github Copilot to test the MCP server! On identifying some relevance with the tools, Copilot should prompt back asking for permission to run these tools. 
+
+![Tool Permission](/screenshots/tool_permission.png)
+
+7. After collecting all relevant data, it combines them with its own response to generate an enhanced output below. Congratulations, you have now successfully set up your own local MCP server for observability!
+
+![Final Result](/screenshots/final_result.png)
+
+### Custom MCP Client Integration
+
+#### What you need
+- [Python3](https://www.python.org/downloads/)
+- [Mistral AI](https://mistral.ai/)
+
+You will need a Mistral API key — the free-tier is sufficient for this POC. No billing info is required unless used in production.
+
+This project follows the instructions outlined in Mistral's [docs](https://docs.mistral.ai/agents/mcp/) for the MCP Client setup.
+
+1. Setup python virtual environment.
 ```
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-3. Setup .env with your MISTRAL_API_KEY. This file is currently ignored in `.gitignore`, do not ever commit this file.
+2. Setup .env with your MISTRAL_API_KEY. This file is currently ignored in `.gitignore`, do not ever commit this file.
 ```
 touch .env
 ```
@@ -48,27 +92,26 @@ touch .env
 MISTRAL_API_KEY=<YOUR_API_KEY>
 ```
 
-3. Run the main script. This will setup the LLM, MCP server and AI agent. 
+3. Run `main.py`. This will instantiate an LLM agent with an MCP client that establishes a connection with the local MCP server - `server.py`.
 
 You will be prompted to enter a command (e.g. “summarize recent alerts” or “what caused the latest incident?”). The agent will:
-- Use the MCP server tools to retrieve relevant observability data
-- Pass the data to a summarizer LLM
-- Return a concise diagnosis or recommendation
+- With the knowledge of tools from the MCP server, it decides which tool is most relevant from the input prompt.
+- Call the tools to fetch relevant observability data.
+- After receiving the data, it is fed into a chat completions API to summarise the data as an observability expert.
 
 ```
 python3 main.py
 ```
 
 ### Screenshots
-
-1. Request critical alerts for an application
+#### Request critical alerts for an application
 
 ![Critical Alerts](/screenshots/critical_alerts.png)
 
-2. Asking for recent error logs for an application
+#### Asking for recent error logs for an application
 
 ![Error Logs](/screenshots/error_logs.png)
 
-3. Request for an investigation
+#### Request for an investigation
 
 ![Investigation](/screenshots/investigation.png)
