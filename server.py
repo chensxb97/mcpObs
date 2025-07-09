@@ -31,7 +31,7 @@ EVENTS = DATASOURCE_PATH / "events.json"
 # LOGS
 @mcp.tool(name="get_info_logs", description="get info logs")
 def get_info_logs(appName: AppName | None = None):
-    res = []
+    result = []
     if appName:
         appName = appName.value.lower()
         with open(file=LOGS[appName], mode="r") as log_file:
@@ -39,8 +39,8 @@ def get_info_logs(appName: AppName | None = None):
             
             for line in lines:
                 if "info" in line.lower():
-                    res.append(line)
-        return res
+                    result.append(line)
+        return result
     
     for log in LOGS:
         with open(file=log, mode="r") as log_file:
@@ -50,12 +50,12 @@ def get_info_logs(appName: AppName | None = None):
                 if appName and appName.value.lower() not in log.lower():
                     continue
                 if "info" in line.lower():
-                    res.append(line)
-    return res
+                    result.append(line)
+    return result
 
 @mcp.tool(name="get_error_logs", description="get error logs")
 def get_error_logs(appName: AppName | None = None):
-    res = []
+    result = []
     if appName:
         appName = appName.value.lower()
         with open(file=LOGS[appName], mode="r") as log_file:
@@ -63,8 +63,8 @@ def get_error_logs(appName: AppName | None = None):
             
             for line in lines:
                 if "error" in line.lower():
-                    res.append(line)
-        return res
+                    result.append(line)
+        return result
     
     for log in LOGS:
         with open(file=log, mode="r") as log_file:
@@ -72,13 +72,13 @@ def get_error_logs(appName: AppName | None = None):
             
             for line in lines:
                 if "error" in line.lower():
-                    res.append(line)
-    return res
+                    result.append(line)
+    return result
 
 # ALERTS
 @mcp.tool(name="get_warning_alerts", description="get warning alerts")
 def get_warning_alerts(appName: AppName | None = None):
-    res = []
+    result = []
     with open(file=ALERTS, mode="r") as alert_file:
         alerts = json.load(alert_file)
         
@@ -86,12 +86,12 @@ def get_warning_alerts(appName: AppName | None = None):
             if appName and alert["application"].lower() != appName.value.lower():
                 continue
             if alert["severity"].lower() == "warning":
-                res.append(alert)
-    return res
+                result.append(alert)
+    return result
 
 @mcp.tool(name="get_critical_alerts", description="get critical alerts")
 def get_critical_alerts(appName: AppName | None = None):
-    res = []
+    result = []
     with open(file=ALERTS, mode="r") as alert_file:
         alerts = json.load(alert_file)
         
@@ -99,54 +99,57 @@ def get_critical_alerts(appName: AppName | None = None):
             if appName and alert["application"].lower() != appName.value.lower():
                 continue
             if alert["severity"].lower() == "critical":
-                res.append(alert)
-    return res
+                result.append(alert)
+    return result
 
 # INCIDENTS
 @mcp.tool(name="get_unresolved_incidents", description="get unresolved incidents")
 def get_unresolved_incidents(appName: AppName | None = None):
     with open(file=INCIDENTS, mode="r") as incident_file:
         incidents = json.load(incident_file)
-        unresolved = []
+        result = []
         for incident in incidents:
             if appName and incident["application"].lower() != appName.value.lower():
                 continue
             if incident["resolved"] == False:
-                unresolved.append(incident)
-        return unresolved
+                result.append(incident)
+        return result
     
 @mcp.tool(name="get_resolved_incidents", description="get resolved incidents")
 def get_resolved_incidents(appName: AppName | None = None):
     with open(file=INCIDENTS, mode="r") as incident_file:
         incidents = json.load(incident_file)
-        resolved = []
+        result = []
         for incident in incidents:
             if appName and incident["application"].lower() != appName.value.lower():
                 continue
             if incident["resolved"]:
-                resolved.append(incident)
-        return resolved
+                result.append(incident)
+        return result
 
+# METRICS
 @mcp.tool(name="get_metrics", description="get metrics")
 def get_metrics(appName: AppName | None = None):
     with open(file=METRICS, mode="r") as metrics_file:
         metrics = json.load(metrics_file)
-        res = []
+        result = []
         for metric in metrics:
             if appName and metric["application"].lower() != appName.value.lower():
                 continue
-            res.append(metric)
-        return res
+            result.append(metric)
+        return result
 
+# EVENTS
 @mcp.tool(name="get_events", description="get events")
-def get_events(app_name: AppName):
+def get_events(appName: AppName | None = None):
     with open(file=EVENTS, mode="r") as event_file:
         events = json.load(event_file)
-        res = []
+        result = []
         for event in events:
-            if event["application"].lower() == app_name.value.lower():
-                res.append(event)
-        return res
+            if appName and event["application"].lower() != appName.value.lower():
+                continue
+            result.append(event)
+        return result
 
 if __name__ == "__main__":
     mcp.run(transport='stdio')
