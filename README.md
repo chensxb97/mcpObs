@@ -105,7 +105,7 @@ python3 main.py
 You will be prompted to enter a command (e.g. “summarize recent alerts” or “what caused the latest incident?”). The agent will:
 - With the knowledge of tools from the MCP server, decide which tool is most relevant from the input prompt.
 - Call the tools to fetch relevant observability data.
-- After receiving the data, it is fed into a chat completions API to summarise the data as an observability expert.
+- After receiving the data, a chat completions API is called to summarise the data as an observability expert.
 
 
 ### Screenshots
