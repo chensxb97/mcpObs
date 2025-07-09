@@ -20,7 +20,7 @@ git clone https://github.com/chensxb97/mcpObs.git
 cd mcpObs
 ```
 
-2. Connect the MCP server to a MCP Client (Github Copilot, Cline, Claude, Cursor) or run a custom MCP client + LLM programmatically.
+2. Connect the MCP server to a MCP Client (Github Copilot, Claude, Cursor, etc.) or run a custom MCP client + LLM programmatically.
 
 ### Github Copilot Integration
 
