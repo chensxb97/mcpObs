@@ -84,7 +84,6 @@ async def main() -> None:
     observability_agent = client.beta.agents.create(
         model=MODEL,
         name="observability assistant",
-        instructions="You are an observability assistant. Use the available tools to investigate logs and incidents.",
         description="",
     )
 
@@ -119,9 +118,7 @@ async def spinner(msg="Loading..."):
 
 async def print_with_spinner(text: str):
     spinner_task = asyncio.create_task(spinner())
-    # Simulate or await some async work that leads to the print
-    # Here we just sleep shortly to simulate that processing
-    await asyncio.sleep(1)  # Adjust or replace with real awaited event if needed
+    await asyncio.sleep(1)
     spinner_task.cancel()
     try:
         await spinner_task
@@ -164,34 +161,25 @@ async def process_input(client: Mistral, observability_agent, mcp_client, query:
         msg=f"Processing query...",
     )
     # Print the results
-    # print("\n=== Run Result ===")
+    # print("All run entries:")
     # for entry in run_result.output_entries:
-    #     # Only print assistant message outputs
-    #     if entry.type == "message.output" and getattr(entry, "role", None) == "assistant":
-    #         try:
-    #             content_json = json.loads(entry.content)
-    #             # Pretty-print JSON content
-    #             pretty_content = json.dumps(content_json, indent=2)
-    #             print("Assistant:")
-    #             print(pretty_content)
-    #             print()
-    #         except (json.JSONDecodeError, TypeError):
-    #             print("Assistant:")
-    #             print(entry.content)
-    summary = await summarize_observability(client, run_result.output_entries, MODEL)
+    #     print(f"{entry}")
+    #     print()
+    # print(f"Final model: {run_result.output_as_model}")
+
+    summary = await summarize_run_result(client, run_result.output_entries, MODEL)
     print("\n=== LLM Summary ===")
     print(summary)
                     
-async def summarize_observability(client: Mistral, data_json, model: str = MODEL):
+async def summarize_run_result(client: Mistral, data_json, model: str = MODEL):
     # Format the prompt with the raw JSON data embedded
-    prompt = f"""
-    You are an observability expert assistant. You will be given observability data comes in the form of alerts, events, incidents, metrics and logs.
-    These data might be correlated with each other, so please look for patterns and relationships.
-    Please analyse and summarise the data concisely, and provide actionable solutions for each incident/alert.
-
-    {data_json}
-    """
-
+    # prompt = f"""
+    # You are an observability expert assistant. You will be given observability data comes in the form of alerts, events, incidents, metrics and logs.
+    # Please provide a concise analysis and suggest actionable solutions if necessary.
+    # {data_json}
+    # """
+    
+    prompt = f"{data_json}"
     # Pass the prompt to the LLM for summarization
     await print_with_spinner(f"Passing data to LLM for summarization ...")
     response = client.chat.complete(
