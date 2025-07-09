@@ -1,6 +1,5 @@
 from typing import Any
 from mcp.server.fastmcp import FastMCP
-from loguru import logger
 import json
 from enum import Enum
 from pathlib import Path

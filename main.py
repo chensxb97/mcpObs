@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import asyncio
 import os
-import json
 from pathlib import Path
 
 from mistralai import Mistral
@@ -50,7 +49,7 @@ class Event(BaseModel):
     application: str
     timestamp: str
 
-class ObservabilityOutput(BaseModel):
+class ObservabilityOutput(BaseModel): # Output Format for the Agent's Run Context
     error_logs: List[str]
     info_logs: List[str]
     warning_alerts: List[Alert]
