@@ -31,6 +31,7 @@ cd mcpObs
 2. Click on the **Tools** icon. Type and select `Add More Tools`. Select `Add MCP Server` afterwards.
 
 ![Select Tools](/screenshots/select_tools.png)
+![Add More Tools](/screenshots/add_more_tools.png)
 ![Add MCP Server](/screenshots/add_mcp_server.png)
 
 3. Select `Command (stdio)`, which is the mode of transport defined in `server.py`.
