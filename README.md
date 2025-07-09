@@ -20,7 +20,14 @@ git clone https://github.com/chensxb97/mcpObs.git
 cd mcpObs
 ```
 
-2. Connect the MCP server to a MCP Client (Github Copilot, Claude, Cursor, etc.) or run a custom MCP client + LLM programmatically.
+2. Setup python virtual environment for your MCP server.
+```
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+
+3. Connect the MCP server to a MCP Client (Github Copilot, Claude, Cursor, etc.) or run a custom MCP client + LLM programmatically.
 
 ### Github Copilot Integration
 
@@ -81,14 +88,7 @@ You will need a Mistral API key — the free-tier is sufficient for this POC. No
 
 This project follows the instructions outlined in Mistral's [docs](https://docs.mistral.ai/agents/mcp/) for the MCP Client setup.
 
-1. Setup python virtual environment.
-```
-python3 -m venv venv
-source venv/bin/activate
-pip3 install -r requirements.txt
-```
-
-2. Setup .env with your MISTRAL_API_KEY. This file is currently ignored in `.gitignore`, do not ever commit this file.
+1. Setup .env with your MISTRAL_API_KEY. This file is currently ignored in `.gitignore`, do not ever commit this file.
 ```
 touch .env
 ```
@@ -96,7 +96,7 @@ touch .env
 MISTRAL_API_KEY=<YOUR_API_KEY>
 ```
 
-3. Run `main.py`. This will instantiate an LLM agent with an MCP client that establishes a connection with the local MCP server - `server.py`.
+2. Run `main.py`. This will instantiate an LLM agent with an MCP client that establishes a connection with the local MCP server - `server.py`.
 
 You will be prompted to enter a command (e.g. “summarize recent alerts” or “what caused the latest incident?”). The agent will:
 - With the knowledge of tools from the MCP server, it decides which tool is most relevant from the input prompt.
