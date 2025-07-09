@@ -20,7 +20,7 @@ git clone https://github.com/chensxb97/mcpObs.git
 cd mcpObs
 ```
 
-2. Setup python virtual environment for your MCP server.
+2. Setup python virtual environment.
 ```
 python3 -m venv venv
 source venv/bin/activate
