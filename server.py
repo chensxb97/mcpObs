@@ -1,4 +1,3 @@
-from typing import Any
 from mcp.server.fastmcp import FastMCP
 import json
 from enum import Enum

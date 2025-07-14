@@ -94,7 +94,7 @@ async def main() -> None:
             if cmd.lower() in ("exit", "quit"):
                 print("👋 Exiting.")
                 break
-            await print_with_spinner(f"Processing query: {cmd} ...")
+            await print_with_spinner(f"Running Agent and MCP Client ...")
             await process_input(client, observability_agent, mcp_client, query=cmd)
             
         except KeyboardInterrupt:
