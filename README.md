@@ -27,7 +27,7 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-3. Connect the MCP server to a MCP Client (Github Copilot, Claude, Cursor, etc.) or run a custom MCP client + LLM programmatically.
+3. Connect the MCP server to a MCP Host (Github Copilot, Claude, Cursor, etc.) or run a custom MCP client + LLM programmatically.
 
 ### Github Copilot Integration
 
