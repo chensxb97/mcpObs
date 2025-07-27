@@ -69,7 +69,7 @@ pip3 install -r requirements.txt
 }
 ```
 
-**For newer versions of [VSCode](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server), this definition is generated and managed in `.vscode/mcp.json`.*
+**For newer versions of [VSCode](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server), mcp server definitions are managed in `.vscode/mcp.json` instead of `settings.json`.*
 
 6. You can now start prompting Github Copilot to test the MCP server! On identifying some relevance with the tools, Copilot should prompt back asking for permission to run these tools. 
 
